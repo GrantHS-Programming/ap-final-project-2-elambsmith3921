@@ -1,2 +1,2 @@
 # AP Computer Science A Final Project
-Name:
+Name: Emma Lamb-Smith
