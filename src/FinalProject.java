@@ -10,7 +10,7 @@ public class FinalProject implements ActionListener {
     int y = 1;
 
     JFrame window = new JFrame("Color Grid");
-    JButton guess = new JButton("Click the color you think the grey square is");
+    JLabel guess = new JLabel("Click the color you think the grey square is");
     JButton blueButton = new JButton("Blue");
     JButton greenButton = new JButton("Green");
     JButton[][] grid = new JButton[x][y];
@@ -46,7 +46,7 @@ public class FinalProject implements ActionListener {
                 boardContainer.add(grid[row][col]);
             }
         }
-
+//maybe make the color guesses a grid of 2, formatting weird here
 
         window.add(blueContainer, BorderLayout.NORTH);
         window.add(guessContainer, BorderLayout.NORTH);
@@ -54,8 +54,12 @@ public class FinalProject implements ActionListener {
         window.add(boardContainer, BorderLayout.SOUTH);
 
         window.setVisible(true);
+        instructions();
         getColor();
+    }
 
+    public void instructions(){
+        JOptionPane.showMessageDialog(null, "The grey box is either green or blue. Click either the green or blue button depending on which color you think it is. If you guess right the boxes will double. If you guess wrong you start over.");
     }
 
     public String getColor(){
@@ -74,11 +78,31 @@ public class FinalProject implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        boolean guessCheck = false;
         if(e.getSource().equals(blueButton) && getColor().equals("blue")){
-            boolean guessCheck = true;
-            x = x*2;
-            y=  y*2;
+            guessCheck = true;
          }
+        if(e.getSource().equals(greenButton) && getColor().equals("green")){
+            guessCheck = true;
+        }
+        if(e.getSource().equals(blueButton) && !getColor().equals("blue")){
+            guessCheck = false;
+        }
+        if(e.getSource().equals(greenButton) && !getColor().equals("green")){
+            guessCheck = false;
+        }
+        if(guessCheck == true){
+            JOptionPane.showMessageDialog(null, "Congratulations! You guessed right! Can you keep your streak with a board twice as big?");
+            x= x*2;
+            y= y*2;
+        }
+        if(guessCheck == false){
+            JOptionPane.showMessageDialog(null, "Sorry, you guessed wrong.");
+            x=1;
+            y=1;
+        }
+
+
     }
 
 }
