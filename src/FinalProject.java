@@ -61,8 +61,11 @@ public class FinalProject implements ActionListener {
     }
 
     public void doubleColors(){
+        window.setVisible(false);
         //close window
         //set new arrays
+
+        JFrame window = new JFrame("Color Grid");
 
         window.setLayout(new BorderLayout());
         window.setSize(800, 800);
